@@ -23,8 +23,8 @@ app.route({
   handler: async(req, reply) => {
     const data = await req.file();
     console.log('upload file ->', data);
-    mkdirSync('downloads', { recursive: true });
-    data.file.pipe(createWriteStream(join('downloads', `${Date.now()}.zip`)));
+    mkdirSync('uploads', { recursive: true });
+    data.file.pipe(createWriteStream(join('uploads', `${Date.now()}_${data.filename ?? 'unknown.zip'}`)));
     reply.send('ok');
   },
 })
